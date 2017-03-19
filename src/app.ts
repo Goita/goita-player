@@ -10,7 +10,10 @@ document.addEventListener("DOMContentLoaded", onLoad.bind(this));
 let history = getParameterByName("history");
 const hide = getParameterByName("hide");
 const playerNo = getParameterByName("no");
-history = "12345678,12345679,11112345,11112345,s1,113,2p,3p,431,1p,2p,315,451";
+if (!history) {
+    history = "12345678,12345679,11112345,11112345,s1,113,2p,3p,431,1p,2p,315,451";
+}
+
 board = goita.Factory.createBoardFromHistory(history);
 
 function onLoad(): void {

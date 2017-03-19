@@ -39,7 +39,7 @@ export class MainView {
 
         // window.addEventListener("resize", this.onResize.bind(this));
         // this.onResize();
-        this.animate();
+        // this.animate();
     }
 
     private setStaticContent() {
