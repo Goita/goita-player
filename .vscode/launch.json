@@ -1,0 +1,30 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Launch Chrome",
+            "url": "http://localhost:8080/index.html?history=12345678,12345679,11112345,11112345,s1,113,2p,3p,431,1p,2p,315",
+            "webRoot": "${workspaceRoot}",
+            "sourceMaps": true,
+            "userDataDir": "${workspaceRoot}/.vscode/chrome",
+            "preLaunchTask": "debug",
+            "windows": {
+                "sourceMapPathOverrides": {
+                    //"webpack:///./C:/myproject/*": "${webRoot}/*"  // 動く
+                    // "webpack:///./*": "*"  // 動かない
+                }
+            }
+        },
+        {
+            "type": "chrome",
+            "request": "attach",
+            "name": "Attach Chrome",
+            "url": "http://localhost:8080/index.html?history=12345678,12345679,11112345,11112345,s1,113,2p,3p,431,1p,2p,315",
+            "webRoot": "${workspaceRoot}",
+            "sourceMaps": true,
+            "port": 9222
+        }
+    ]
+}
