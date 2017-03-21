@@ -4,7 +4,7 @@ import * as goita from "goita-core";
 import { MainView } from "./mainView";
 
 let board: goita.Board;
-const view = new MainView();
+let view: MainView;
 document.addEventListener("DOMContentLoaded", onLoad.bind(this));
 
 let history = getParameterByName("history");
@@ -19,6 +19,7 @@ board = goita.Factory.createBoardFromHistory(history);
 function onLoad(): void {
     // for debug
     setTimeout(() => {
+        view = new MainView();
         view.board = board;
         view.playerNo = Number(playerNo);
         view.showHidden = hide !== "1";

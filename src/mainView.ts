@@ -14,7 +14,7 @@ export class MainView {
     public playerNo: number;
     public showHidden: boolean = false;
 
-    private app = new PIXI.Application(600, 800, { antialias: false, backgroundColor: 0xccffaa });
+    private app = new PIXI.Application(contentHeight, contentWidth, { antialias: false, backgroundColor: 0xccffaa });
     private graphics = new PIXI.Graphics();
     private textures: IDictionary<PIXI.Texture> = {};
     private hiddenSpriteList = new Array<PIXI.Sprite>();
@@ -37,8 +37,8 @@ export class MainView {
         this.updateMenuArea();
         this.updateBoard();
 
-        // window.addEventListener("resize", this.onResize.bind(this));
-        // this.onResize();
+        window.addEventListener("resize", this.onResize.bind(this));
+        this.onResize();
         // this.animate();
     }
 
@@ -51,16 +51,16 @@ export class MainView {
         const boardBg = new PIXI.Sprite(this.textures["board-bg"]);
         boardBg.pivot.x = 600 / 2;
         boardBg.pivot.y = 640 / 2;
-        boardBg.x = this.app.renderer.width / 2;
-        boardBg.y = this.app.renderer.height / 2;
+        boardBg.x = contentWidth / 2;
+        boardBg.y = contentHeight / 2;
         boardBg.scale.set(boardScaleX, boardScaleY);
         this.app.stage.addChild(boardBg);
 
         const boardLines = new PIXI.Sprite(this.textures["board-line"]);
         boardLines.pivot.x = 551 / 2;
         boardLines.pivot.y = 589 / 2;
-        boardLines.x = this.app.renderer.width / 2;
-        boardLines.y = this.app.renderer.height / 2;
+        boardLines.x = contentWidth / 2;
+        boardLines.y = contentHeight / 2;
         boardLines.scale.set(boardScaleX, boardScaleY);
         this.app.stage.addChild(boardLines);
     }
@@ -145,8 +145,8 @@ export class MainView {
         const poslist = [[0, 1], [1, 0], [0, -1], [-1, 0]];
         const rf = 135;
         const rh = 235;
-        const cx = this.app.renderer.width / 2;
-        const cy = this.app.renderer.height / 2;
+        const cx = contentWidth / 2;
+        const cy = contentHeight / 2;
         for (let i = 0; i < 4; i++) {
             // show field
             const p = this.board.players[i];
@@ -403,7 +403,9 @@ export class MainView {
     private onResize() {
         const width = document.documentElement.clientWidth;
         const height = document.documentElement.clientHeight;
-        this.app.renderer.resize(width, height);
+        const ratio = Math.min(width / contentWidth, height / contentHeight);
+        this.app.renderer.resize(contentWidth * ratio, contentHeight * ratio);
+        this.app.stage.scale.set(ratio);
     }
 
     /**
