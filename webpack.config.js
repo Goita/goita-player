@@ -44,6 +44,10 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js'
     },
+    externals: {
+            // Use external version of React
+            "pixi.js": "PIXI"
+        },
     plugins: [
         new CopyWebpackPlugin([{ from: 'src/public' }])
     ],
