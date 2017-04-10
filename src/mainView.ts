@@ -257,7 +257,7 @@ export class MainView {
         }
         // pad null to dealer position
         for (let i = 0; i < history.dealer; i++) {
-            moves[0].push(null);
+            moves[i].push(null);
         }
 
         // fill with history
@@ -274,6 +274,7 @@ export class MainView {
             let count = 0;
             for (const m of moves[i]) {
                 if (!m) {
+                    count++;
                     continue;
                 }
                 if (m.pass) {
